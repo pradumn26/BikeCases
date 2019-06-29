@@ -1,3 +1,6 @@
+const passport = require('passport');
+const mongoUtil = require('../util/mongoUtil');
+
 module.exports = (app) => {
     app.get('/auth/fetchUser', (req, res) => {
         res.send(req.user);
@@ -23,7 +26,8 @@ module.exports = (app) => {
             email: req.body.email,
             phone: req.body.phone,
             city: req.body.city,
-            password: req.body.password
+            password: req.body.password,
+            availability: true
         });
 
         doctorsCollection.insert(doctor)
@@ -31,7 +35,7 @@ module.exports = (app) => {
                 doctor._id = result.insertedIds[0];
                 doctor.authType = 'police-auth';
                 req.login(doctor, function () {
-                    res.redirect('/todaysAppointments?msg=Welcome+to+BikeCases.+You+are+successfully+registered.');
+                    res.redirect('/');
                 })
             })
     });
@@ -53,7 +57,7 @@ module.exports = (app) => {
                 user._id = result.insertedIds[0];
                 user.authType = 'users-auth';
                 req.login(user, function () {
-                    res.redirect('/doctors?msg=Welcome+to+BikeCases.+You+are+successfully+registered.');
+                    res.redirect('/');
                 })
             })
     });
