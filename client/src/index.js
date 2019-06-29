@@ -8,8 +8,10 @@ import App from './components/App';
 import reducers from './reducers';
 import * as serviceWorker from './serviceWorker';
 
+//intialising redux store
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
+//rendering app
 ReactDOM.render(
     <Provider store={store}>
         <App/>

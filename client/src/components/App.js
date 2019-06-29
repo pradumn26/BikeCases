@@ -8,6 +8,7 @@ import UsersSignup from './UsersSignup';
 import PoliceSignup from './PoliceSignup';
 import {fetchUser} from "../actions";
 
+//react.js router
 class App extends Component{
   render() {
       return (

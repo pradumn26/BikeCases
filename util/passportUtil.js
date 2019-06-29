@@ -24,6 +24,7 @@ passport.deserializeUser(function(data, done) {
         })
 });
 
+//auth logic for police type
 passport.use('police-auth', new LocalStrategy(
     {usernameField: 'email', passwordField: 'password'},
     function(email, password, done) {
@@ -45,6 +46,7 @@ passport.use('police-auth', new LocalStrategy(
     }
 ));
 
+//auth logic for user type
 passport.use('users-auth', new LocalStrategy(
     {usernameField: 'email', passwordField: 'password'},
     function(email, password, done) {
