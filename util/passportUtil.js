@@ -4,10 +4,12 @@ const ObjectId = require('mongodb').ObjectId;
 
 const db = require('./mongoUtil').getDb();
 
+//what goes into the cookie
 passport.serializeUser(function(document, done) {
     done(null, {id:document._id, authType: document.authType});
 });
 
+//converting cookie into user doc
 passport.deserializeUser(function(data, done) {
     let col = data.authType == 'police-auth' ? 'police' : 'users';
     let collection = db.collection(col);

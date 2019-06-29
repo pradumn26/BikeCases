@@ -4,10 +4,13 @@ const passport = require('passport');
 
 const mongoUtil = require('./util/mongoUtil');
 
+
+// connecting to mongo server
 mongoUtil.connectToDb()
 .then(function () {
     const app = express();
 
+    //adding middlewares
     app.use(express.urlencoded({extended: true}));
     app.use(express.json());
     app.use(cookieSession({
@@ -17,9 +20,11 @@ mongoUtil.connectToDb()
     app.use(passport.initialize());
     app.use(passport.session());
 
+    //adding routes to it
     require('./util/passportUtil');
     require('./routes/authRoutes')(app);
 
+    //dynamic porting
     const PORT = process.env.PORT || 4000;
     app.listen(PORT, function () {
         console.log(`App has started on port ${PORT}`);
