@@ -18,6 +18,7 @@ mongoUtil.connectToDb()
     app.use(passport.session());
 
     require('./util/passportUtil');
+    require('/routes/authRoutes')(app);
 
     const PORT = process.env.PORT || 4000;
     app.listen(PORT, function () {
